@@ -5,7 +5,7 @@
 - Использовано QLoRA (4-bit quantization + LoRA).
 - Метрики: ROUGE-1, ROUGE-2, ROUGE-L.
 ### Стек
-Python, LangChain, HF Transformers, FAISS, Gradio, PyTorch.
+Python, PyTorch, HF Transformers, PEFT, Datasets, Gradio.
 
 ```/
 ├── data/                            # файлы адаптеров
