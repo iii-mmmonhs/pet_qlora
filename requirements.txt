@@ -1,0 +1,12 @@
+torch
+transformers
+peft
+accelerate
+gradio
+sentencepiece
+datasets
+evaluate
+rouge-score
+psutil
+openai 
+json-repair
