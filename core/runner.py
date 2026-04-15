@@ -36,7 +36,7 @@ class ExperimentRunner:
             
         base_model = AutoModelForSeq2SeqLM.from_pretrained(
             MODEL_NAME,
-            torch_dtype=torch.float32,
+            torch_dtype=torch.bfloat16,
             low_cpu_mem_usage=True,
             device_map=device_map
         )
@@ -85,13 +85,7 @@ class ExperimentRunner:
                     out_b = self.peft_model.generate(**inputs, max_new_tokens=MAX_NEW_TOKENS)
             b_sum = self.tokenizer.decode(out_b[0], skip_special_tokens=True)
             logger.info(f"Model B результат: {b_sum[:50]}")
-            
-            q_metrics = self.rouge.compute(predictions=[q_sum], references=[reference_text])
-            q_metrics = {k: round(v, 4) for k, v in q_metrics.items()}
-            
-            b_metrics = self.rouge.compute(predictions=[b_sum], references=[reference_text])
-            b_metrics = {k: round(v, 4) for k, v in b_metrics.items()}
-            
+                        
             logger.info("Запрос к судье")
             judge_results = Judge.evaluate(source_text, reference_text, q_sum, b_sum)
             
@@ -99,8 +93,7 @@ class ExperimentRunner:
             
             return (
                 source_text, reference_text,
-                q_sum, q_metrics,
-                b_sum, b_metrics,
+                q_sum, b_sum,
                 judge_results,
                 summary_msg
             )

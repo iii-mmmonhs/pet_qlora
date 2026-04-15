@@ -62,11 +62,9 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
         with gr.Column(variant="panel"):
             gr.Markdown("### QLoRA")
             q_out = gr.Textbox(label="Summary", lines=4, interactive=False)
-            q_met = gr.JSON(label="Метрики ROUGE")
         with gr.Column(variant="panel"):
             gr.Markdown("### Исходная модель")
             b_out = gr.Textbox(label="Summary", lines=4, interactive=False)
-            b_met = gr.JSON(label="Метрики ROUGE")
             
     with gr.Column(variant="compact", elem_id="judge_area"):
         gr.Markdown("## Вердикт судьи")
@@ -74,7 +72,7 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
 
     btn_go.click(
         fn=run_and_format,
-        outputs=[src_display, ref_display, q_out, q_met, b_out, b_met, judge_out]
+        outputs=[src_display, ref_display, q_out, b_out, judge_out]
     )
 
 if __name__ == "__main__":

@@ -39,7 +39,6 @@ def load_and_preprocess_data(tokenizer, TRAIN_SIZE=4500, EVAL_SIZE=4500):
         batched=True,
         batch_size=64,
         num_proc=4,
-        remove_columns=["article", "highlights"],
         load_from_cache_file=False
     )
 
@@ -48,7 +47,6 @@ def load_and_preprocess_data(tokenizer, TRAIN_SIZE=4500, EVAL_SIZE=4500):
         batched=True,
         batch_size=64,
         num_proc=4,
-        remove_columns=["article", "highlights"],
         load_from_cache_file=False
     )
 
